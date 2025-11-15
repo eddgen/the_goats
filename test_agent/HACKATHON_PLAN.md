@@ -139,11 +139,16 @@ Faza 3: Tools Implementation (Ziua 2)
       track_calories
    └── TESTĂM
 
+1.5 fridge_tools.py
+
 2. body_analysis_tools.py (1-2 ore)
    ├── calculate_bmi() si assesment
    ├── track_measurements()
       visualize_transformation()
+      estimate_bodyfat
    └── TESTĂM
+
+
 
 3. workout_tools.py (2-3 ore)
    ├── generate_workout_plan()

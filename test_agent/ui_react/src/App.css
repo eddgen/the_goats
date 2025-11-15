@@ -77,22 +77,40 @@
   transform: scale(1.05);
 }
 
-/* Features bar */
-.features-bar {
+/* Tabs */
+.tabs-container {
   background: #f8f9fa;
-  padding: 12px 30px;
+  padding: 0 30px;
   display: flex;
-  gap: 24px;
-  border-bottom: 1px solid #e9ecef;
+  gap: 8px;
+  border-bottom: 2px solid #e9ecef;
 }
 
-.feature {
+.tab {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #667eea;
-  font-size: 13px;
+  padding: 14px 24px;
+  background: transparent;
+  border: none;
+  color: #64748b;
+  font-size: 14px;
   font-weight: 500;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+  margin-bottom: -2px;
+}
+
+.tab:hover {
+  color: #667eea;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.tab.active {
+  color: #667eea;
+  border-bottom-color: #667eea;
+  font-weight: 600;
 }
 
 /* Messages */
@@ -223,6 +241,20 @@
   max-width: 70%;
 }
 
+.message-images {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.message-images .message-image {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  margin-bottom: 0;
+}
+
 .message.user .message-content {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   color: white;
@@ -295,9 +327,19 @@
   border-top: 1px solid #e9ecef;
 }
 
+.images-preview-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  overflow-x: auto;
+  border-bottom: 1px solid #e9ecef;
+}
+
 .image-preview {
   position: relative;
   display: inline-block;
+  flex-shrink: 0;
   margin-bottom: 12px;
 }
 
@@ -409,6 +451,11 @@
   text-align: center;
 }
 
+.image-count {
+  color: #667eea;
+  font-weight: 600;
+}
+
 /* Scrollbar */
 .messages-container::-webkit-scrollbar {
   width: 8px;
@@ -427,6 +474,387 @@
   background: #a0aec0;
 }
 
+/* Fridge Tab */
+.fridge-tab {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.fridge-layout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  padding: 20px;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* Left side - Upload */
+.fridge-upload-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fridge-upload-section h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.fridge-upload-area {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 3px dashed #cbd5e0;
+  border-radius: 16px;
+  background: #f8fafc;
+  transition: all 0.3s;
+}
+
+.fridge-upload-area:hover {
+  border-color: #667eea;
+  background: #f1f5ff;
+}
+
+.fridge-upload-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #667eea;
+  padding: 40px;
+  transition: all 0.2s;
+}
+
+.fridge-upload-btn:hover {
+  transform: scale(1.05);
+}
+
+.fridge-upload-btn p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.fridge-upload-btn span {
+  font-size: 14px;
+  color: #64748b;
+}
+
+.fridge-image-preview {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.fridge-image-preview img {
+  width: 100%;
+  max-height: 600px;
+  min-height: 400px;
+  object-fit: contain;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: #f8fafc;
+}
+
+.fridge-image-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.analyze-btn {
+  flex: 1;
+  padding: 14px 24px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.analyze-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.analyze-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.change-photo-btn {
+  padding: 14px 20px;
+  background: #f1f5f9;
+  color: #64748b;
+  border: none;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+
+.change-photo-btn:hover {
+  background: #e2e8f0;
+}
+
+/* Right side - Inventory */
+.fridge-inventory-section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  overflow: hidden;
+}
+
+.inventory-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.inventory-header h2 {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.clear-inventory-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  background: #fef2f2;
+  color: #ef4444;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.clear-inventory-btn:hover {
+  background: #fee2e2;
+}
+
+.empty-inventory {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: #94a3b8;
+  text-align: center;
+  padding: 40px;
+}
+
+.empty-icon {
+  opacity: 0.3;
+}
+
+.empty-inventory p {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0;
+}
+
+.empty-inventory span {
+  font-size: 14px;
+}
+
+.inventory-content {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.inventory-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 12px;
+  color: white;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+
+.stat-number {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.stat-label {
+  font-size: 12px;
+  opacity: 0.9;
+  font-weight: 500;
+}
+
+.category-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.category-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+  padding: 8px 0;
+  border-bottom: 2px solid #e2e8f0;
+}
+
+.inventory-meta {
+  padding: 12px;
+  background: #f8fafc;
+  border-radius: 8px;
+}
+
+.analyzed-time {
+  font-size: 13px;
+  color: #64748b;
+  margin: 0;
+}
+
+.foods-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.food-item {
+  display: flex;
+  gap: 12px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  transition: all 0.2s;
+}
+
+.food-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transform: translateY(-2px);
+}
+
+.food-icon {
+  font-size: 32px;
+  flex-shrink: 0;
+}
+
+.food-details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.food-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+}
+
+.food-details h3,
+.food-details h4 {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0;
+}
+
+.calories-badge {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.food-quantity {
+  font-size: 14px;
+  color: #64748b;
+  margin: 0;
+}
+
+.food-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 4px;
+}
+
+.freshness {
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 500;
+}
+
+.freshness.fresh {
+  background: #dcfce7;
+  color: #16a34a;
+}
+
+.freshness.consume_soon {
+  background: #fef3c7;
+  color: #d97706;
+}
+
+.freshness.check_expiry {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.category-badge {
+  font-size: 11px;
+  padding: 4px 8px;
+  background: #f1f5f9;
+  color: #64748b;
+  border-radius: 6px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.raw-response {
+  padding: 16px;
+  background: #f8fafc;
+  border-radius: 12px;
+  font-size: 14px;
+  color: #475569;
+  line-height: 1.6;
+  white-space: pre-wrap;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
   .app-container {
@@ -441,8 +869,13 @@
     font-size: 22px;
   }
 
-  .features-bar {
-    overflow-x: auto;
+  .tabs-container {
+    padding: 0 16px;
+  }
+
+  .tab {
+    padding: 12px 16px;
+    font-size: 13px;
   }
 
   .message-content {
@@ -451,5 +884,23 @@
 
   .example-grid {
     grid-template-columns: 1fr;
+  }
+
+  .fridge-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .fridge-upload-section,
+  .fridge-inventory-section {
+    max-height: 400px;
+  }
+
+  .inventory-stats {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-number {
+    font-size: 22px;
   }
 }

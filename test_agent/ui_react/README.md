@@ -36,13 +36,37 @@ Frontend runs on: `http://localhost:3000`
 
 - **Modern UI** - Beautiful gradient design with smooth animations
 - **Real-time Chat** - Instant messaging with the AI agent
-- **Image Upload** - Drag & drop or click to upload body photos
-- **Image Preview** - See uploaded images before sending
+- **Multiple Image Upload** - Upload 1 or more images at once
+  - Single image → Body fat analysis
+  - Two images → Before/After transformation comparison
+- **Image Preview** - See all uploaded images before sending (with individual remove buttons)
 - **Example Prompts** - Quick start buttons for common queries
 - **Typing Indicator** - Shows when AI is thinking
 - **Auto-scroll** - Automatically scrolls to latest message
 - **Responsive** - Works on desktop, tablet, and mobile
 - **Dark gradient theme** - Eye-catching purple gradient background
+
+## 📸 How to Use Images
+
+### Single Image Analysis
+1. Click the upload button (📤)
+2. Select 1 image of your body
+3. Type: "Analyze my body fat percentage"
+4. Click send - image will be analyzed and cleared from input
+
+### Transformation Comparison (Before/After)
+1. Click the upload button (📤)
+2. Select 2 images:
+   - First image = BEFORE photo
+   - Second image = AFTER photo
+3. Type: "Compare my transformation" or "Analyze my progress"
+4. Click send - agent calls `visualize_transformation()` automatically
+
+### Multiple Images
+- You can upload as many images as needed
+- Each image shows preview with X button to remove
+- After sending, all images are cleared automatically
+- Images appear in your chat message in a grid layout
 
 ## 🎨 Design Features
 

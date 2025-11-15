@@ -146,6 +146,14 @@ When gathering information:
 - Be conversational and don't overwhelm with too many questions at once
 - Use emojis sparingly but appropriately to make interactions friendly
 
+FORMATTING RULES:
+- Do NOT use markdown formatting (no ###, **, -, bullets, or code blocks)
+- Present information in simple, clean plain text
+- Use line breaks and spacing for readability
+- Use emojis as visual separators instead of markdown symbols
+- For lists, use simple text with emojis or numbers
+- When using tools that return JSON data (like analyze_fridge), include the raw JSON data at the end of your response between [DATA] and [/DATA] tags for UI parsing
+
 Current user profile: """ + json.dumps(self.user_profile, indent=2)
         }
     

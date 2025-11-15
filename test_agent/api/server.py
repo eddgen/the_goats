@@ -8,6 +8,7 @@ from pathlib import Path
 from fastapi import FastAPI, UploadFile, File, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
+from typing import List
 import shutil
 
 # Add parent directory to path
@@ -49,10 +50,10 @@ class ChatResponse(BaseModel):
 @app.post("/api/chat", response_model=ChatResponse)
 async def chat(
     message: str = Form(...),
-    image: UploadFile = File(None)
+    images: List[UploadFile] = File(None)
 ):
     """
-    Handle chat messages with optional image upload
+    Handle chat messages with optional multiple image uploads
     """
     global agent
     
@@ -63,19 +64,27 @@ async def chat(
         )
     
     try:
-        # Handle image if provided
-        image_path = None
-        if image:
-            # Save image temporarily
+        # Handle multiple images if provided
+        image_paths = []
+        if images:
+            # Save images temporarily
             upload_dir = Path("data/uploads")
             upload_dir.mkdir(parents=True, exist_ok=True)
             
-            image_path = upload_dir / image.filename
-            with image_path.open("wb") as buffer:
-                shutil.copyfileobj(image.file, buffer)
+            for idx, image in enumerate(images):
+                image_path = upload_dir / f"{idx}_{image.filename}"
+                with image_path.open("wb") as buffer:
+                    shutil.copyfileobj(image.file, buffer)
+                image_paths.append(str(image_path))
             
-            # Add image reference to message
-            message = f"{message}\n\n[Image uploaded: {image_path}]"
+            # Add image references to message
+            if len(image_paths) == 1:
+                message = f"{message}\n\n[Image uploaded: {image_paths[0]}]"
+            elif len(image_paths) == 2:
+                message = f"{message}\n\n[2 images uploaded for transformation comparison: before={image_paths[0]}, after={image_paths[1]}]"
+            else:
+                images_str = ", ".join(image_paths)
+                message = f"{message}\n\n[{len(image_paths)} images uploaded: {images_str}]"
         
         # Get agent response
         response = agent.chat(message)

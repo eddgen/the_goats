@@ -8,6 +8,11 @@ from tools.nutrition_tools import (
     generate_meal_plan,
     track_calories
 )
+from tools.fridge_tools import (
+    FRIDGE_TOOLS,
+    analyze_fridge,
+    suggest_meal_from_fridge
+)
 from tools.workout_tools import (
     WORKOUT_TOOLS,
     generate_workout_plan,
@@ -41,6 +46,7 @@ from tools.export_tools import (
 # Combine all tools
 ALL_TOOLS = (
     NUTRITION_TOOLS +
+    FRIDGE_TOOLS +
     WORKOUT_TOOLS +
     BODY_ANALYSIS_TOOLS +
     ROUTE_TOOLS +
@@ -55,6 +61,10 @@ TOOL_FUNCTIONS = {
     "calculate_tdee": calculate_tdee,
     "generate_meal_plan": generate_meal_plan,
     "track_calories": track_calories,
+    
+    # Fridge tools
+    "analyze_fridge": analyze_fridge,
+    "suggest_meal_from_fridge": suggest_meal_from_fridge,
     
     # Workout tools
     "generate_workout_plan": generate_workout_plan,

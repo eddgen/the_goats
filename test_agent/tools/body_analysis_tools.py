@@ -94,7 +94,9 @@ Format your response as JSON with these exact keys:
     "muscle_definition": "<description>",
     "recommendations": "<text>",
     "analysis_notes": "<additional observations>"
-}"""
+}
+
+REMEMBER: Output must be pure JSON only, no markdown, no code blocks, no formatting."""
                         },
                         {
                             "type": "image_url",
@@ -414,7 +416,9 @@ Format as JSON:
     "overall_assessment": "<detailed assessment>",
     "motivation": "<encouraging message>",
     "recommendations": "<next steps>"
-}"""
+}
+
+REMEMBER: Output must be pure JSON only, no markdown, no code blocks, no formatting."""
                         },
                         {
                             "type": "text",
