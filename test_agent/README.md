@@ -2,6 +2,29 @@
 
 Proiect pentru Hackathon - Un agent AI inteligent pentru fitness și nutriție.
 
+## ⚡ Quick Start
+
+```bash
+# 1. Install dependencies
+pip install -r requirements.txt
+
+# 2. Setup OpenAI API key
+cp .env.example .env
+# Edit .env and add: OPENAI_API_KEY=sk-your-key-here
+
+# 3. Run agent
+python main.py
+```
+
+## 💰 Cost-Efficient AI
+
+Folosește **GPT-4o-mini** - cel mai ieftin model OpenAI:
+- **$0.15 / 1M tokens** (input)
+- **Conversație medie**: ~$0.001-0.01
+- **100 conversații**: ~$0.10-$1.00
+
+**Super ieftin și rapid!** ⚡
+
 ## 📁 Structura Proiectului
 
 ```

@@ -19,13 +19,17 @@ class FitnessAgent:
         Initialize the FitCoach AI agent
         
         Args:
-            api_key: Not used for local Ollama (kept for compatibility)
+            api_key: OpenAI API key (if not provided, will try to get from environment)
         """
-        # Use Ollama local server with OpenAI-compatible API
-        self.client = OpenAI(
-            base_url="http://localhost:11434/v1",
-            api_key="ollama"  # Ollama doesn't need a real API key
-        )
+        # Get API key from parameter or environment
+        if api_key is None:
+            api_key = os.getenv("OPENAI_API_KEY")
+            if not api_key:
+                raise ValueError("OpenAI API key not found. Set OPENAI_API_KEY in .env file")
+        
+        # Use OpenAI API with GPT-4o-mini (cheap and efficient model)
+        self.client = OpenAI(api_key=api_key)
+        self.model = "gpt-4o-mini"  # Cheapest GPT-4 model: ~$0.15/1M input tokens
         self.conversation_history = []
         self.user_profile = {}
         self.tools = self._initialize_tools()
@@ -62,12 +66,13 @@ class FitnessAgent:
         # Prepare messages for API call
         messages = [system_message] + self.conversation_history
         
-        # Call Ollama local model with function calling
+        # Call OpenAI API with function calling
         response = self.client.chat.completions.create(
-            model="llama3.1:8b",
+            model=self.model,
             messages=messages,
             tools=self.tools if self.tools else None,
-            tool_choice="auto" if self.tools else None
+            tool_choice="auto" if self.tools else None,
+            temperature=0.7  # Balanced creativity
         )
         
         # Process response
@@ -90,8 +95,9 @@ class FitnessAgent:
             
             # Get final response after tool execution
             final_response = self.client.chat.completions.create(
-                model="llama3.1:8b",
-                messages=[system_message] + self.conversation_history
+                model=self.model,
+                messages=[system_message] + self.conversation_history,
+                temperature=0.7
             )
             
             final_message = final_response.choices[0].message.content

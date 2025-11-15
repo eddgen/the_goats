@@ -19,3 +19,6 @@ requests>=2.31.0
 # Optional: Alternative LLMs
 anthropic>=0.18.0
 # ollama  # Uncomment for local LLM support
+
+# Additional dependencies for body analysis
+httpx>=0.24.0  # Required by OpenAI client

@@ -16,7 +16,9 @@ from tools.workout_tools import (
 from tools.body_analysis_tools import (
     BODY_ANALYSIS_TOOLS,
     calculate_bmi,
-    estimate_body_fat
+    estimate_body_fat,
+    track_measurements,
+    visualize_transformation
 )
 from tools.route_tools import (
     ROUTE_TOOLS,
@@ -61,6 +63,8 @@ TOOL_FUNCTIONS = {
     # Body analysis tools
     "calculate_bmi": calculate_bmi,
     "estimate_body_fat": estimate_body_fat,
+    "track_measurements": track_measurements,
+    "visualize_transformation": visualize_transformation,
     
     # Route tools
     "generate_running_routes": generate_running_routes,
