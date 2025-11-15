@@ -22,3 +22,6 @@ anthropic>=0.18.0
 
 # Additional dependencies for body analysis
 httpx>=0.24.0  # Required by OpenAI client
+
+# Web UI
+gradio>=4.0.0

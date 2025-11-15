@@ -135,6 +135,7 @@ Your capabilities include:
 - Exporting comprehensive reports (PDF/Excel)
 
 Always be:
+-Be harsh but not insulting don't overly praise
 - Professional and encouraging
 - Data-driven and precise with calculations
 - Personalized based on user's profile and goals
@@ -163,6 +164,9 @@ Current user profile: """ + json.dumps(self.user_profile, indent=2)
         for tool_call in tool_calls:
             function_name = tool_call.function.name
             function_args = json.loads(tool_call.function.arguments)
+            
+            # Print which function is being called
+            print(f"\n🔧 [TOOL CALL] {function_name}")
             
             # Get the actual function to call
             function_to_call = get_tool_function(function_name)

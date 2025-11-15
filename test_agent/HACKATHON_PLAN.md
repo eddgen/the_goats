@@ -136,11 +136,13 @@ Faza 3: Tools Implementation (Ziua 2)
 1. nutrition_tools.py (3-4 ore) ← ÎNCEPEM AICI
    ├── calculate_tdee() 
    ├── generate_meal_plan()
+      track_calories
    └── TESTĂM
 
 2. body_analysis_tools.py (1-2 ore)
-   ├── calculate_bmi()
+   ├── calculate_bmi() si assesment
    ├── track_measurements()
+      visualize_transformation()
    └── TESTĂM
 
 3. workout_tools.py (2-3 ore)
