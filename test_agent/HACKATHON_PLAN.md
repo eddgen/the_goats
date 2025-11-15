@@ -177,7 +177,7 @@ Faza 5: Integration & Testing (Ziua 3 după-amiază)
 •	Testing conversational flow
 •	Bug fixes
 Faza 6: UI/Polish (Opțional - dacă mai ai timp)
-•	Streamlit/Gradio interface
+•	Streamlit/Gradio interfac
 •	SAU Telegram bot
 •	SAU rămâi cu CLI
 📦 requirements.txt

@@ -22,6 +22,7 @@ function App() {
     return saved ? JSON.parse(saved) : null
   })
   const [analyzingFridge, setAnalyzingFridge] = useState(false)
+  const [compactView, setCompactView] = useState(false)
   
   const fileInputRef = useRef(null)
   const fridgeFileInputRef = useRef(null)
@@ -472,11 +473,22 @@ function App() {
               <div className="fridge-inventory-section">
                 <div className="inventory-header">
                   <h2>🥗 Inventory</h2>
-                  {fridgeInventory && (
-                    <button onClick={clearFridge} className="clear-inventory-btn">
-                      <Trash2 size={16} /> Clear
-                    </button>
-                  )}
+                  <div className="inventory-actions">
+                    {fridgeInventory && (
+                      <>
+                        <button 
+                          onClick={() => setCompactView(!compactView)} 
+                          className="compact-toggle-btn"
+                          title={compactView ? "Expand view" : "Compact view"}
+                        >
+                          {compactView ? '📋' : '📑'}
+                        </button>
+                        <button onClick={clearFridge} className="clear-inventory-btn">
+                          <Trash2 size={16} /> Clear
+                        </button>
+                      </>
+                    )}
+                  </div>
                 </div>
                 
                 {!fridgeInventory ? (
@@ -486,7 +498,7 @@ function App() {
                     <span>Upload a photo and analyze to see your inventory</span>
                   </div>
                 ) : (
-                  <div className="inventory-content">
+                  <div className={`inventory-content ${compactView ? 'compact' : ''}`}>
                     <div className="inventory-meta">
                       <p className="analyzed-time">
                         📅 Analyzed: {new Date(fridgeInventory.analyzedAt).toLocaleString()}
