@@ -1,0 +1,21 @@
+# Core dependencies
+openai>=1.0.0
+python-dotenv>=1.0.0
+
+# Image processing and analysis
+Pillow>=10.0.0
+
+# Maps and location services
+googlemaps>=4.10.0
+
+# PDF and Excel generation
+reportlab>=4.0.0
+pandas>=2.0.0
+openpyxl>=3.1.0
+
+# HTTP requests
+requests>=2.31.0
+
+# Optional: Alternative LLMs
+anthropic>=0.18.0
+# ollama  # Uncomment for local LLM support
